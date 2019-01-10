@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-redis
+  labels:
+    app: timber-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-redis
+  template:
+    metadata:
+      labels:
+        app: timber-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine

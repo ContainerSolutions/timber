@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-debugging
+  labels:
+    app: timber-debugging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-debugging
+  template:
+    metadata:
+      labels:
+        app: timber-debugging
+    spec:
+      containers:
+      - name: timber-debugging
+        image: registry.gitlab.com/containersolutions/timber/backend
+        ports:
+        - containerPort: 8080
+        env:
+        - {name: TIMBER_LIVENESS_PROBE_ENABLED, value: "yep"}
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+            httpGet:
+                path: /probe/not-ready
+                port: 8080
+                scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+        livenessProbe:
+            httpGet:
+                path: /probe/not-live
+                port: 8080
+                scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 2

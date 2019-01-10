@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-backend
+  labels:
+    app: timber-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-backend
+  template:
+    metadata:
+      labels:
+        app: timber-backend
+    spec:
+      containers:
+      - name: timber-backend
+        image: registry.gitlab.com/containersolutions/timber/backend
+        ports:
+        - containerPort: 8080
+        env:
+        - {name: TIMBER_STATE, value: redis}
+        - {name: REDIS_HOST, value: timber-redis}

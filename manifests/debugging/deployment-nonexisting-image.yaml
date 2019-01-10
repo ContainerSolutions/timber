@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-debugging
+  labels:
+    app: timber-debugging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-debugging
+  template:
+    metadata:
+      labels:
+        app: timber-debugging
+    spec:
+      containers:
+      - name: timber-debugging
+        image: registry.gitlab.com/containersolutions/timber:non-existing-image
+        ports:
+        - containerPort: 8080

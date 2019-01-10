@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-frontend
+  labels:
+    app: timber-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-frontend
+  template:
+    metadata:
+      labels:
+        app: timber-frontend
+    spec:
+      containers:
+      - name: timber-frontend
+        image: registry.gitlab.com/containersolutions/timber/frontend
+        ports:
+        - containerPort: 8080
+        env:
+        - {name: TIMBER_BACKEND_API_URL, value: "http://timber-backend:8080"}

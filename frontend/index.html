@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Timber</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet" crossorigin="anonymous">
+    <style>
+      body { background-color: #2740f8; font-family: 'Roboto', sans-serif; !important }
+      body.v1-0 { background-color: #27a9f8; }
+      .jumbotron { padding: 8rem 2rem; margin-bottom: 0; }
+      h1 { font-size: 5rem; }
+      h1, h2, h3 { font-weight: normal; }
+      .description { font-family: 'Roboto Mono', monospace; }
+      .stroke { -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #555555; }
+      .hostname { color: #{{hostname_color}}; }
+      .version { color: #{{version_color}}; }
+      .state { color: #{{state_color}}; }
+      .description { white-space: pre; }
+      footer { text-align: center; font-size: 10px; padding-bottom: 32px; background-color: #e9ecef; }
+    </style>
+  </head>
+  <body class="v1-0">
+    <main role="main">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="stroke">Hello, this is Timber!</h1>
+          <h2 class="hostname stroke">Hostname: {{hostname}}</h2>
+          <h2 class="version stroke">Version: {{version}}</h2>
+          <h2 class="state stroke">State: {{state}}</h2>
+          <hr>
+          <p class="description">{{description}}</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="h3">
+      Timber was made with ❤️ by <a href="https://container-solutions.com?utm_source=timber">Container Solutions</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+stages:
+- build
+- tag
+
+# Image used for all jobs
+image: docker:latest
+
+# Services available for all jobs (so that we can build Docker images)
+services:
+  - docker:dind
+
+# This command runs before each job. ` || true` makes sure the job still passes if it's not a Docker job.
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY || true
+
+# Build the docker image tagged with the branch name and the commit sha
+frontend:
+  stage: build
+  script:
+    - cd frontend
+    - docker build -t $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG -t $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_REF_SLUG
+    - docker push $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA
+
+backend:
+  stage: build
+  script:
+    - cd backend
+    - docker build -t $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG -t $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_REF_SLUG
+    - docker push $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_SHA
+
+# If on master:
+# 1. pull the latest images for backend and frontend
+# 2. tag them with latest (implicit)
+# 3. push them to the registry
+tag-latest:
+  stage: tag
+  script:
+    - docker pull $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE/backend:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/backend
+    - docker push $CI_REGISTRY_IMAGE/backend
+    - docker pull $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/frontend
+    - docker push $CI_REGISTRY_IMAGE/frontend
+  only:
+    - master
