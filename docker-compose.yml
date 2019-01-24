@@ -7,11 +7,13 @@ services:
     - 8080
     volumes:
     - ./backend:/app
+    restart: always
   frontend:
     build: frontend
     ports:
     - 8080
     volumes:
     - ./frontend:/app
+    restart: always
   redis:
     image: redis:alpine

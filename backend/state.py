@@ -1,36 +1,38 @@
 import os
+import random
 import uuid
 
+import requests
 import redis
+
 from configuration import redis_host, state
 
-inmemory_state_uuid = None
+
+def get_cat_picture():  # Use the cat API and get a random image of the 100 returned
+    r = requests.get('https://api.thecatapi.com/v1/images/search?limit=100')
+    return r.json()[random.randint(0, 99)]['url']
+
+
+inmemory_state_image_link = None
+inmemory_state_hits = 0
 def inmemory_state():
-    global inmemory_state_uuid
-    if not inmemory_state_uuid:
-        inmemory_state_uuid = uuid.uuid4()  # Generate a new UUID
-        return f'I am keeping state! I generated this UUID and I am keeping it in memory: {inmemory_state_uuid}'
-    return f'I am keeping state! The UUID was in memory already, here it is: {inmemory_state_uuid}'
+    global inmemory_state_image_link
+    global inmemory_state_hits
 
-def storage_state():
-    # First off, let's make the /state directory if it doesn't exist
-    os.makedirs('/state', exist_ok=True)
+    if not inmemory_state_image_link:
+        inmemory_state_image_link = get_cat_picture()
 
-    file_path = '/state/uuid'
-    state_exists = os.path.isfile(file_path)  # Do we already have a state UUID file?
-    if state_exists:
-        state_uuid = open(file_path).read()  # Let's read the uuid and use that one!
-        return f'I am keeping state! I found this UUID in `{file_path}`: {state_uuid}'
+    inmemory_state_hits += 1  # Increase the number of hits
 
-    # State file does not exist. Let's create it.
-    with open(file_path, 'w+') as f:
-        f.write(str(uuid.uuid4()))
-    state_uuid = open(file_path).read()  # Let's read the uuid and use that one!
-    return f'I am keeping state! I have generated this UUID and I am keeping it in `{file_path}`: {state_uuid}'
+    return (inmemory_state_image_link, inmemory_state_hits)  # Return URL and hits
 
 
 def redis_state():
-    state_key = 'timber:state:uuid'
+    state_keys = {
+        'image_link': 'timber:state:image_link',
+        'state_hits': 'timber:state:state_hits',
+    }
+
     try:
         # Connect to redis
         r = redis.Redis(
@@ -39,27 +41,21 @@ def redis_state():
             decode_responses=True
         )
 
-        if r.get('timber:state:uuid') is None:  # If we have to set state for the first time
-            r.set(state_key, str(uuid.uuid4()))
-            redis_uuid = r.get(state_key)
-            return f'I am keeping state! I generated this UUID and I am keeping it in Redis: {redis_uuid}'
+        # Increase the number of state_hits
+        r.incr(state_keys['state_hits'])
 
-        # If state already exists, we get it and display it
-        redis_uuid = r.get(state_key)
-        return f'I am keeping state! I got this UUID from Redis: {redis_uuid}'
+        # If we don't have an image URL yet, let's fetch one.
+        if r.get(state_keys['image_link']) is None:
+            r.set(state_keys['image_link'], get_cat_picture())
+
+        image_link = r.get(state_keys['image_link'])
+        return
     except redis.exceptions.ConnectionError:
-        return 'Connecting to Redis failed. I cannot keep state.'
+        return '', 0
+
 
 state_options = {
-    'storage': storage_state,
     'inmemory': inmemory_state,
     'redis': redis_state,
 }
-
-if state not in state_options:
-    # We are using lambda just to keep the type of the variable consistent.
-    description_func = lambda: f"You have set Timber's state to {state}, but I don't know how to handle it!"
-if state is None:
-    description_func = lambda: 'I am not keeping state.'
-else:
-    description_func = state_options[state]
+state_function = state_options[state]  # We can easily call the state function then

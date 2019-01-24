@@ -32,10 +32,14 @@ def v1_metadata():
         'ip': metadata.ip,
         'description': metadata.description,
     })
+
 @app.route('/api/v1/state')
 def v1_state():
+    image_link, state_hits = state.state_function()
     return jsonify({
-        'description': state.description_func(),
+        'type': configuration.state,
+        'image_link': image_link,
+        'state_hits': state_hits,
     })
 
 @app.route('/api/v1/redis_detection')
