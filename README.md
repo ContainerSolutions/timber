@@ -2,9 +2,16 @@
 
 Hey there! This is Timber.
 
-Timber is written in Python 3. Fear not! It is, we hope, well-documented and fairly easy to understand.
+Timber is a companion app for the  [ContainerSolutions trainings](https://training.container-solutions.com/?utm_source=timber_docs).
 
-It aims to be a simple yet thorough application to accompany the [ContainerSolutions trainings](https://training.container-solutions.com/?utm_source=timber_docs).
+Its aim is to provide with engineers attending the trainings with a sample
+application they can build upon and play with during the trainings.
+
+It replicates a "traditional web app" setup where there is a frontend, a backend and a database (we'll use Redis).
+
+Functionality is enabled & disabled mostly through environment variables.
+
+Timber is written in Python 3. Fear not! It is, we hope, well-documented and fairly easy to understand.
 
 - [Timber - the Training companion app](#timber---the-training-companion-app)
   - [💻 Running it locally](#%F0%9F%92%BB-running-it-locally)
