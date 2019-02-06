@@ -1,0 +1,5 @@
+commonLabels:
+  com.container-solutions.app: timber
+
+bases:
+- bases/

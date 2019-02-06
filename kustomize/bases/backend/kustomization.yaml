@@ -1,0 +1,6 @@
+commonLabels:
+    com.container-solutions.type: backend
+
+resources:
+- deployment.yaml
+- service.yaml

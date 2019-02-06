@@ -1,0 +1,7 @@
+resources:
+- namespace.yml
+
+namespace: simone-timber
+
+bases:
+- ../../bases

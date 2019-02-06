@@ -1,0 +1,6 @@
+commonLabels:
+    com.container-solutions.type: redis
+
+resources:
+- deployment.yaml
+- service.yaml

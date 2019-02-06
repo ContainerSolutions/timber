@@ -1,0 +1,4 @@
+bases:
+- backend
+- frontend
+- redis

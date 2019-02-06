@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-frontend
+spec:
+  template:
+    spec:
+      containers:
+      - name: timber-frontend
+        image: frontend
+        env:
+          - {name: TIMBER_BACKEND_API_URL, value: "http://$(TIMBER_BACKEND_API_HOST):$(TIMBER_BACKEND_API_PORT)"}

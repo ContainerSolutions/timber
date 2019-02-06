@@ -1,0 +1,21 @@
+commonLabels:
+    com.container-solutions.type: frontend
+    com.container-solutions.frontend-port: "8080"
+
+resources:
+- deployment.yaml
+- service.yaml
+
+vars:
+  - name: TIMBER_BACKEND_API_HOST
+    objref:
+      kind: Service
+      name: timber-backend
+      apiVersion: v1
+  - name: TIMBER_BACKEND_API_PORT
+    objref:
+      kind: Service
+      name: timber-frontend
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.labels["com.container-solutions.frontend-port"]
