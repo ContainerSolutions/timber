@@ -1,0 +1,13 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+
+commonLabels:
+  app: timber-frontend
+
+vars:
+  - name: TIMBER_BACKEND_API_URL
+    objref:
+      kind: Service
+      name: timber-backend
+      apiVersion: v1
