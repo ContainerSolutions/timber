@@ -163,8 +163,8 @@ Frontend configuration, through environment variables
 
 | Environment Variable           | What it does        | Default              |
 |--------------------------------|---------------------|----------------------|
-| `TINDER_BACKEND_API_URL`       | Set the backend URL | `http://backend:8080`
-| `TINDER_LISTEN_PORT`           | Set the port Timber listens on | 8080 |
+| `TIMBER_BACKEND_API_URL`       | Set the backend URL | `http://backend:8080`
+| `TIMBER_LISTEN_PORT`           | Set the port Timber listens on | 8080 |
 
 ### [`backend.py`](frontend/backend.py)
 
