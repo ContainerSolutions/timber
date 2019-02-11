@@ -12,4 +12,4 @@ spec:
     targetPort: 8080
   selector:
     app: timber-backend
-type: NodePort
+  type: NodePort
