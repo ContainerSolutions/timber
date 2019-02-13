@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: single-service-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "single-service-ingress-staticip"          
+spec:
+  backend:
+    serviceName: timber-backend
+    servicePort: 8080
