@@ -6,7 +6,6 @@ metadata:
     app: timber-backend
   name: timber-backend
 spec:
-  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
@@ -14,3 +13,4 @@ spec:
     name: backend         
   selector:
     app: timber-backend
+  type: NodePort
