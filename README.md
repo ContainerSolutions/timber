@@ -17,6 +17,7 @@ Timber is written in Python 3. Fear not! It is, we hope, well-documented and fai
   - [💻 Running it locally](#%F0%9F%92%BB-running-it-locally)
   - [🚀 Running it on Kubernetes](#%F0%9F%9A%80-running-it-on-kubernetes)
   - [🐉 Backend](#%F0%9F%90%89-backend)
+    - [`/api/v1/fortune`](#apiv1fortune)
     - [`/api/v1/metadata`](#apiv1metadata)
     - [`/api/v1/configuration`](#apiv1configuration)
     - [`/api/v1/colors`](#apiv1colors)

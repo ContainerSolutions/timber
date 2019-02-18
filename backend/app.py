@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_file
 
 import colors
 import configuration
@@ -10,6 +10,15 @@ app = Flask(__name__, template_folder='.')
 ###
 ### Routes
 ###
+
+### Adapted from 'Kubernetes in Action' Chapter 6: Volumes: attaching disk storage to containers
+@app.route('/api/v1/fortune')
+def v1_fortune():
+   fortune_file = '/data/fortune/index.html'
+   try:
+       return send_file(fortune_file)
+   except Exception as e:
+       return "Could not read fortune file from " + fortune_file + ". Is the volume mounted?"
 
 @app.route('/api/v1/configuration')
 def v1_configuration():
