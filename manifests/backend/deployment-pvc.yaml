@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-backend
+  labels:
+    app: timber-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-backend
+  template:
+    metadata:
+      labels:
+        app: timber-backend
+    spec:
+      containers:
+      - name: timber-backend
+        image: registry.gitlab.com/containersolutions/timber/backend
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: fortune
+          mountPath: /data/fortune          
+        ports:
+        - containerPort: 8080
+        env:
+        - {name: TIMBER_READINESS_PROBE_ENABLED, value: "yep"}
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+            httpGet:
+                path: /probe/readiness
+                port: 8080
+                scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+      - name: timber-fortune
+        image: luksa/fortune
+        volumeMounts:
+        - name: fortune
+          mountPath: /var/htdocs         
+      volumes:
+      - name: fortune      
+        persistentVolumeClaim:
+          claimName: fortune-claim
