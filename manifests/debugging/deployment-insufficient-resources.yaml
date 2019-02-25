@@ -17,10 +17,13 @@ spec:
     spec:
       containers:
       - name: timber-debugging
-        image: registry.gitlab.com/containersolutions/api
+        image: registry.gitlab.com/containersolutions/timber/backend
         ports:
         - containerPort: 8080
-      resources:
-        requests:
-          memory: "128Gi"
-          cpu: "10"
+        resources:
+          requests:
+            memory: "128Gi"
+            cpu: "10m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
