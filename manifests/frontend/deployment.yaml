@@ -22,3 +22,10 @@ spec:
         - containerPort: 8080
         env:
         - {name: TIMBER_BACKEND_API_URL, value: "http://timber-backend:8080"}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
