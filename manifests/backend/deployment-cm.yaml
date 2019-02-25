@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-backend
+  labels:
+    app: timber-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timber-backend
+  template:
+    metadata:
+      labels:
+        app: timber-backend
+    spec:
+      containers:
+      - name: timber-backend
+        image: registry.gitlab.com/containersolutions/timber/backend
+        ports:
+        - containerPort: 8080
+        env:
+          - name: TIMBER_READINESS_PROBE_ENABLED
+            valueFrom:
+              configMapKeyRef:
+                name: timber-backend-config
+                key: READINESS_PROBE
+          - name: TIMBER_LIVENESS_PROBE_ENABLED
+            valueFrom:
+              configMapKeyRef:
+                name: timber-backend-config
+                key: LIVENESS_PROBE
