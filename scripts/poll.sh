@@ -2,7 +2,7 @@
 
 while :
 do
-  POLL=$(curl -s -k -L 35.189.94.221/backend/api/v1/metadata | jq -r .hostname)
+  POLL=$(curl -s -k -L http://34.95.95.41 | grep 'My hostname is')
   echo "$(date) $POLL"
   sleep 0.001
 done
