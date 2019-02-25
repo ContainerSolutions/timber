@@ -1,22 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: gke-ingress
 spec:
   rules:
-  - host: frontend.timber.com
-    http:
+  - http:
       paths:
-      - path: /frontend
+      - path: /
         backend:
           serviceName: timber-frontend
           servicePort: 8080
-  - host: backend.timber.com
-    http:
-      paths:
-      - path: /backend/(.+)
+      - path: /backend/*
         backend:
           serviceName: timber-backend
           servicePort: 8080
