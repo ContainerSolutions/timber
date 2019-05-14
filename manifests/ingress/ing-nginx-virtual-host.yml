@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-virtual-host-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - backend:
+          serviceName: timber-frontend
+          servicePort: 8080
+  - host: hello-world.data
+    http:
+      paths:
+      - backend:
+          serviceName: timber-backend
+          servicePort: 8080

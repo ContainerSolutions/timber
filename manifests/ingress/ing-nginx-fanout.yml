@@ -1,12 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: gke-ingress
+  name: nginx-fanout-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+  - host: hello-world.info
+    http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: timber-frontend
           servicePort: 8080

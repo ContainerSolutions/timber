@@ -4,5 +4,5 @@ metadata:
   name: single-service-ingress
 spec:
   backend:
-    serviceName: timber-backend
+    serviceName: timber-frontend
     servicePort: 8080
