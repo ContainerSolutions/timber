@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: timber-debugging
-        image: registry.gitlab.com/containersolutions/timber/backend
+        image: eu.gcr.io/container-solutions-workshops/timber/backend
         ports:
         - containerPort: 8080
         env:

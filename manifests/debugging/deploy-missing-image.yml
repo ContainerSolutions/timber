@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: timber-debugging
-        image: registry.gitlab.com/containersolutions/timber:non-existing-image
+        image: eu.gcr.io/container-solutions-workshops/timber:non-existing-image
         ports:
         - containerPort: 8080

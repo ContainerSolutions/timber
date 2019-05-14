@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
       - name: timber-backend
-        image: registry.gitlab.com/containersolutions/timber/backend
+        image: eu.gcr.io/container-solutions-workshops/timber/backend
         imagePullPolicy: Always
         volumeMounts:
         - name: fortune
-          mountPath: /data/fortune          
+          mountPath: /data/fortune
         ports:
         - containerPort: 8080
         env:
@@ -39,7 +39,7 @@ spec:
         image: luksa/fortune
         volumeMounts:
         - name: fortune
-          mountPath: /var/htdocs         
+          mountPath: /var/htdocs
       volumes:
-      - name: fortune      
+      - name: fortune
         emptyDir: {}
