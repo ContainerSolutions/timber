@@ -1,0 +1,50 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: graphite
+  name: graphite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: graphite
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        run: graphite
+    spec:
+      containers:
+      - image: graphiteapp/graphite-statsd
+        name: graphite
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 8125
+          name: statsd
+          protocol: UDP
+        resources: {}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: graphite
+  name: graphite
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: statsd
+    port: 8125
+    protocol: UDP
+    targetPort: 8125
+  selector:
+    run: graphite
+  type: NodePort
