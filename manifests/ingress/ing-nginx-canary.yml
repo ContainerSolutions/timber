@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/canary-weight: "30"
 spec:
   rules:
-  - host: k8s.eu
+  - host: ing.k8z.eu
     http:
       paths:
       - path: /*
