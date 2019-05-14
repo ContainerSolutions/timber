@@ -6,13 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: hello-world.info
+  - host: k8s.eu
     http:
       paths:
       - backend:
           serviceName: timber-frontend
           servicePort: 8080
-  - host: hello-world.data
+  - host: k8s.eu
     http:
       paths:
       - backend:

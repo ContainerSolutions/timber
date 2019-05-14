@@ -1,19 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-fanout-ingress
+  name: frontend-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: k8s.eu
-    http:
+  - http:
       paths:
       - path: /*
         backend:
           serviceName: timber-frontend
-          servicePort: 8080
-      - path: /backend/*
-        backend:
-          serviceName: timber-backend
           servicePort: 8080
