@@ -6,13 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: ing.k8z.eu
+  - host: userX.ing.k8z.eu
     http:
       paths:
       - backend:
           serviceName: timber-frontend
           servicePort: 8080
-  - host: ing.k8z.eu
+  - host: userY.ing.k8z.eu
     http:
       paths:
       - backend:
