@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: frontend-stop-egress
-  namespace: user1          
+  name: frontend-block-egress
+  namespace: user1
 spec:
   podSelector:
     matchLabels:

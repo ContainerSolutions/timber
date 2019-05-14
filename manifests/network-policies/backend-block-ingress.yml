@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: backend-stop-ingress
-  namespace: user1          
+  name: backend-block-ingress
+  namespace: user1
 spec:
   podSelector:
     matchLabels:
