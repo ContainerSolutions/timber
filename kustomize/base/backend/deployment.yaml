@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timber-backend
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: timber-backend
+        image: registry.gitlab.com/containersolutions/timber/backend
+        ports:
+        - containerPort: 8080
