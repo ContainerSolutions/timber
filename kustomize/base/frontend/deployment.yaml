@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: timber-frontend
-        image: registry.gitlab.com/containersolutions/timber/frontend
+        image: eu.gcr.io/container-solutions-workshops/timber/frontend
         ports:
         - containerPort: 8080
         env:
