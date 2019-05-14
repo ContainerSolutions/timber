@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quota-demo
+  labels:
+    app: quota-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quota-demo
+  template:
+    metadata:
+      labels:
+        app: quota-demo
+    spec:
+      containers:
+        - name: resource-consumer
+          image: gcr.io/kubernetes-e2e-test-images/resource-consumer:1.4

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quota-demo
+  name: quota-demo
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: backend
+  selector:
+    app: quota-demo
+  type: NodePort
