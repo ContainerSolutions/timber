@@ -4,7 +4,7 @@ metadata:
   name: nginx-fanout-ingress
 spec:
   rules:
-  - host: userX.ing.k8z.eu
+  - host: timber.u1.training.csol.cloud
     http:
       paths:
       - path: /*

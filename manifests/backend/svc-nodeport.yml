@@ -10,7 +10,7 @@ spec:
   - port: 8080
     targetPort: 8080
     nodePort: 31000
-    name: backend         
+    name: backend
   selector:
     app: timber-backend
   type: NodePort
