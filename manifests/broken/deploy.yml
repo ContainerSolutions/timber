@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-timber
+  labels:
+    app: broken-timber
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: broken-timber
+  template:
+    metadata:
+      labels:
+        app: broken-timber
+        tier: backend
+    spec:
+      containers:
+        - name: broken-timber
+          image: eu.gcr.io/container-solutions-workshops/timber/backend:3.14159
+          ports:
+          - containerPort: 8080
+          env:
+            - name: TIMBER_READINESS_PROBE_ENABLED
+              value: "enabled"
+          readinessProbe:
+            httpGet:
+              path: /neverready
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 5

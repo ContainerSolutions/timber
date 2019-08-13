@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: broken-timber-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    tier: frontend
