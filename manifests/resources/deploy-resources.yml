@@ -1,26 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quota-demo
+  name: stress-demo
   labels:
-    app: quota-demo
+    app: stress-demo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: quota-demo
+      app: stress-demo
   template:
     metadata:
       labels:
-        app: quota-demo
+        app: stress-demo
     spec:
       containers:
-        - name: resource-consumer
-          image: gcr.io/kubernetes-e2e-test-images/resource-consumer:1.4
+        - name: stress
+          image: progrium/stress:latest
+          command: ["/usr/bin/stress"]
+          args: ["--cpu", "5", "--timeout", "600s"]
           resources:
             requests:
               cpu: "100m"
-              memory: "250Mi"
+              memory: "100Mi"
             limits:
-              cpu: "500m"
-              memory: "500Mi"
+              cpu: "200m"
+              memory: "200Mi"
