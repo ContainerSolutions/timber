@@ -2,7 +2,7 @@
 
 while :
 do
-  POLL=$(curl -s -k -L http://34.95.95.41 | grep 'My hostname is')
+  POLL=$(curl -s -k -L http://front.u1.timber.training.csol.cloud/ | grep -i --context=0 'My hostname is')
   echo "$(date) $POLL"
-  sleep 0.001
+  sleep 0.5
 done
