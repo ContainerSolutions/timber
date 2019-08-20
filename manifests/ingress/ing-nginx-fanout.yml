@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-fanout-ingress
+  name: ngx-fanout-ing
 spec:
   rules:
-  - host: timber.u1.training.csol.cloud
+  - host: u1.timber.training.csol.cloud
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: timber-frontend
           servicePort: 8080

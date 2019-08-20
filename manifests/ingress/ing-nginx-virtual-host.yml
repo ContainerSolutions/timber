@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-virtual-host-ingress
+  name: ngx-virtual-host-ing
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: front.u1.training.csol.cloud
+  - host: front.u1.timber.training.csol.cloud
     http:
       paths:
       - backend:
           serviceName: timber-frontend
           servicePort: 8080
-  - host: back.u1.training.csol.cloud
+  - host: back.u1.timber.training.csol.cloud
     http:
       paths:
       - backend:
