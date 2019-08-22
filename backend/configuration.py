@@ -22,14 +22,13 @@ version = os.getenv('TIMBER_VERSION', '1.3')
 
 liveness_probe_text = 'enabled and reachable at `/probe/liveness`'
 readiness_probe_text = 'enabled and reachable at `/probe/readiness`'
-description = '''Here's the configuration details for Timber right now:
-    `TIMBER_LIVENESS_PROBE_ENABLED` - The liveness probe is {liveness_probe}
-    `TIMBER_READINESS_PROBE_ENABLED` - The readiness probe is {readiness_probe}
-    `TIMBER_STATE` - The state management is set to `{state}`
-    `TIMBER_VERSION` - The version is `{version}`.
+description = '''Configuration from Backend:
 
-    You can change all of these through environment variables.
-    Take a look at `configuration.py` to see how this works.'''.format(
+`TIMBER_VERSION` - The version is `{version}`.
+`TIMBER_LIVENESS_PROBE_ENABLED` - The liveness probe is {liveness_probe}
+`TIMBER_READINESS_PROBE_ENABLED` - The readiness probe is {readiness_probe}
+`TIMBER_STATE` - The state management is set to `{state}`
+    '''.format(
         # Format it so it doesn't say True or False, but enabled or disabled
         liveness_probe=liveness_probe_text if liveness_probe_enabled else 'disabled',
         readiness_probe=readiness_probe_text if readiness_probe_enabled else 'disabled',

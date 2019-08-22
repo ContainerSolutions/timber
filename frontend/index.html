@@ -11,14 +11,10 @@
       body { background-color: #2740f8; font-family: 'Roboto', sans-serif; !important }
       body.v1-0 { background-color: #27a9f8; }
       .jumbotron { padding: 8rem 2rem; margin-bottom: 0; }
-      h1 { font-size: 5rem; }
       h1, h2, h3 { font-weight: normal; }
-      .description { font-family: 'Roboto Mono', monospace; }
-      .stroke { -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #555555; }
-      .hostname { color: #{{hostname_color}}; }
-      .version { color: #{{version_color}}; }
-      .state { color: #{{state_color}}; }
-      .description { white-space: pre; }
+      h1 { font-size: 5rem; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #555555; }
+      h2 { color: #{{hostname_color}}; }
+      p { font-family: 'Roboto Mono', monospace; white-space: pre; }
       footer { text-align: center; font-size: 10px; padding-bottom: 32px; background-color: #e9ecef; }
     </style>
   </head>
@@ -26,18 +22,22 @@
     <main role="main">
       <div class="jumbotron">
         <div class="container">
-          <h1 class="stroke">Hello, this is Timber!</h1>
-          <h2 class="hostname stroke">Hostname: {{hostname}}</h2>
-          <h2 class="version stroke">Version: {{version}}</h2>
-          <h2 class="state stroke">State: <img src="{{state_image_link}}" width="100px"> has been shown {{state_hits}} times</h2>
+          <h1>Timber Frontend</h1>
+
           <hr>
-          <p class="description">{{description}}</p>
+
+          <h2>Hostname: {{hostname}}</h2>
+          <h2>Container: {{my_hostname}}</h2>
+          <h2>Version: {{version}}</h2>
+
+
+          <hr>
+
+          <p>{{description}}</p>
         </div>
       </div>
     </main>
 
-    <footer class="h3">
-      Timber was made with ❤️ by <a href="https://training.container-solutions.com?utm_source=timber_app">Container Solutions</a>
-    </footer>
+    <footer>Made with ❤️  by <a href="https://training.container-solutions.com?utm_source=timber_app">Container Solutions</a></footer>
   </body>
 </html>

@@ -20,11 +20,9 @@ def hello():
 
     # Description to return on the index page
     description = [
-        f'Hello there! This is the frontend container. My hostname is {my_hostname}',
-        'On the other hand, all this information comes from the backend:',
-        api_data['redis_detection'].get('description', 'Unable to reach the backend.'),
-        api_data['metadata'].get('description', 'Unable to reach the backend.'),
         api_data['configuration'].get('description', 'Unable to reach the backend.'),
+        # api_data['redis_detection'].get('description', 'Unable to reach the backend.'),
+        # api_data['metadata'].get('description', 'Unable to reach the backend.')
     ]
 
     # Transforming the list into an HTML-worthy text
@@ -35,6 +33,7 @@ def hello():
         'index.html',
         description=description,
         hostname=api_data['metadata'].get('hostname'),
+        my_hostname=my_hostname,
         hostname_color=api_data['colors'].get('hostname'),
         version=api_data['configuration'].get('version'),
         version_color=api_data['colors'].get('version'),

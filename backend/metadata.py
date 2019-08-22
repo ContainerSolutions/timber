@@ -13,8 +13,10 @@ namespace = os.getenv('MY_POD_NAMESPACE', 'unknown')
 node = os.getenv('MY_NODE_NAME', 'unknown')
 
 # We use this in `app.py`, to return on `/`
-description = f'''This information comes from the Downward Kubernetes API:
-    My pod name is `{pod}`, on node `{node}` in namespace `{namespace}`, with IP `{ip}`.
-    Also, my hostname is `{hostname}`, but I knew that without asking the API!
-    This code resides in `metadata.py`.
+description = f'''Downward Kubernetes API:
+
+Pod name is `{pod}`
+Node is `{node}`
+Namespace is `{namespace}`
+IP is `{ip}`
 '''
