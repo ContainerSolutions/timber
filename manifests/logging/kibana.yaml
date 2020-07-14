@@ -18,13 +18,13 @@ spec:
       containers:
       - name: kibana
         image: docker.elastic.co/kibana/kibana:7.2.0
-        resources:
-          limits:
-            cpu: 1000m
-            memory: 1Gi
-          requests:
-            cpu: 700m
-            memory: 1Gi
+        # resources:
+        #   limits:
+        #     cpu: 1000m
+        #     memory: 1Gi
+        #   requests:
+        #     cpu: 700m
+        #     memory: 1Gi
         env:
           - name: ELASTICSEARCH_URL
             value: http://elasticsearch:9200
@@ -43,3 +43,19 @@ spec:
   - port: 5601
   selector:
     app: kibana
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-frontend
+  namespace: kube-logging
+  labels:
+    app: kibana
+spec:
+  ports:
+  - port: 5601
+    targetPort: 5601
+    name: kibana
+  selector:
+    app: kibana
+  type: NodePort
