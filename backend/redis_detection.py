@@ -9,7 +9,8 @@ try:
         host='localhost', port=6379, db=0,
         socket_timeout=2, socket_connect_timeout=2,
     )
-except redis.connections.ConnectionError:
+    r.ping()
+except redis.ConnectionError:
     is_detected = False
 else:
     is_detected = True
