@@ -10,6 +10,17 @@ app = Flask(__name__, template_folder='.')
 ###
 ### Routes
 ###
+@app.route('/')
+def main():
+    return '''
+<li><a href="/static/<path:filename>">/static/<path:filename> </a>
+<li><a href="/api/v1/colors">/api/v1/colors </a>
+<li><a href="/api/v1/configuration">/api/v1/configuration </a>
+<li><a href="/api/v1/fortune">/api/v1/fortune </a>
+<li><a href="/api/v1/metadata">/api/v1/metadata</a>
+<li><a href="/api/v1/redis_detection">/api/v1/redis_detection </a>
+<li><a href="/api/v1/state">/api/v1/state </a>
+'''
 
 ### Adapted from 'Kubernetes in Action' Chapter 6: Volumes: attaching disk storage to containers
 @app.route('/api/v1/fortune')
