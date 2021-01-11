@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: dockleafdigital/timber:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_ACCOUNT }}/timber:${{ github.sha }}
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
