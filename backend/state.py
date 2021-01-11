@@ -49,7 +49,7 @@ def redis_state():
             r.set(state_keys['image_link'], get_cat_picture())
 
         image_link = r.get(state_keys['image_link'])
-        return
+        return (image_link,r.get(state_keys['state_hits']))
     except redis.exceptions.ConnectionError:
         return '', 0
 
