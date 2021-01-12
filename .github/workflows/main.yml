@@ -38,5 +38,5 @@ jobs:
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           event-type: image-tag-update
-          repository: ContainerSolutions/timber-gitops-config
+          repository: ${{ github.actor }}/timber-gitops-config
           client-payload: '{"tag": "${{ github.sha }}"}'
