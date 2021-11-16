@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: backend
+    ver: green
+  name: green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      ver: green
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+        ver: green
+    spec:
+      containers:
+      - image: lalyos/12factor:green
+        name: green
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

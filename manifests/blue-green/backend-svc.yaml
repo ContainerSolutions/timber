@@ -1,0 +1,19 @@
+# k patch svc/backend --patch '{"spec":{"selector":{"ver":"green"}}}'
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: backend
+    ver: blue
+  name: backend
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: backend
+    ver: blue
+status:
+  loadBalancer: {}

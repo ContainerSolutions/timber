@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: backend
+    ver: blue
+  name: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+      ver: blue
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+        ver: blue
+    spec:
+      containers:
+      - image: lalyos/12factor:blue
+        name: blue
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
