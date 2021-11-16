@@ -1,0 +1,19 @@
+# for i in {1..20}; do curl -cc -bc mixed.user0.k8z.eu ; done
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: cookie
+  name: mixed
+spec:
+  rules:
+  -   host: mixed.user0.k8z.eu
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: mixed
+                port:
+                  number: 80

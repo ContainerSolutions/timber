@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mixed
+  name: mixed
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: mixed
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mixed
+    spec:
+      containers:
+      - image: lalyos/12factor:rnd
+        name: mixed
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
