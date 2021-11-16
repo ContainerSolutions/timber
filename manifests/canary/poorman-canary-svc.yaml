@@ -1,0 +1,14 @@
+# k patch svc/backend --patch '{"spec":{"selector":{"ver":"green"}}}'
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: backend
+status:
+  loadBalancer: {}
