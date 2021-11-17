@@ -1,0 +1,6 @@
+kind: Coffee
+apiVersion: lalyo.sh/v1
+metadata:
+  name: esspresso
+spec:
+  strong: 8

@@ -1,0 +1,6 @@
+kind: Coffee
+apiVersion: lalyo.sh/v1
+metadata:
+  name: ristretto
+spec:
+  strong: 15
